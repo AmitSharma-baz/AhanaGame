@@ -149,3 +149,22 @@ button:active {
     transform: translateY(3px);
     background-color: #ff5252;
 }
+
+.control-btn-small {
+    background-color: #4cd137;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'Fredoka One', cursive;
+    box-shadow: 0 4px 0 #44bd32;
+    user-select: none;
+    touch-action: manipulation;
+}
+
+.control-btn-small:active {
+    box-shadow: 0 1px 0 #44bd32;
+    transform: translateY(3px);
+}

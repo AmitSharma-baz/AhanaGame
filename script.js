@@ -289,6 +289,18 @@ document.getElementById('btn-rotate').addEventListener('click', () => {
     if (!isGameOver) playerRotate(1);
 });
 
+document.getElementById('btn-fullscreen').addEventListener('click', () => {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {
+            console.log(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+        });
+    } else {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        }
+    }
+});
+
 playerReset();
 updateScore();
 update();
