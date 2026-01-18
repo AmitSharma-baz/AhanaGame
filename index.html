@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Falling Bricks Game</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="game-container">
+        <img src="myprofile.jpeg" alt="Ahana's Photo" class="profile-pic">
+        <h1>Falling Bricks!</h1>
+        <div class="score-board">
+            Score: <span id="score">0</span>
+        </div>
+        <canvas id="tetris" width="240" height="400"></canvas>
+        <div class="controls-hint">
+            <p>Use Arrow Keys to Play!</p>
+            <p>⬅️ Left ➡️ Right ⬆️ Rotate ⬇️ Down</p>
+        </div>
+        <div id="game-over" class="hidden">
+            <h2>Game Over!</h2>
+            <button onclick="resetGame()">Play Again</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
