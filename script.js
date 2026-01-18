@@ -80,7 +80,7 @@ function draw() {
     context.fillStyle = '#202028';
     context.fillRect(0, 0, canvas.width, canvas.height);
 
-    drawMatrix(arena, {x: 0, y: 0});
+    drawMatrix(arena, { x: 0, y: 0 });
     drawMatrix(player.matrix, player.pos);
 }
 
@@ -91,7 +91,7 @@ function drawMatrix(matrix, offset) {
                 // Main block color
                 context.fillStyle = colors[value];
                 context.fillRect(x + offset.x, y + offset.y, 1, 1);
-                
+
                 // Add a little shine/border to look like a brick
                 context.lineWidth = 0.05;
                 context.strokeStyle = 'white';
@@ -118,9 +118,9 @@ function rotate(matrix, dir) {
                 matrix[x][y],
                 matrix[y][x],
             ] = [
-                matrix[y][x],
-                matrix[x][y],
-            ];
+                    matrix[y][x],
+                    matrix[x][y],
+                ];
         }
     }
     if (dir > 0) {
@@ -154,8 +154,8 @@ function playerReset() {
     player.matrix = createPiece(pieces[pieces.length * Math.random() | 0]);
     player.pos.y = 0;
     player.pos.x = (arena[0].length / 2 | 0) -
-                   (player.matrix[0].length / 2 | 0);
-    
+        (player.matrix[0].length / 2 | 0);
+
     // Game Over check
     if (collide(arena, player)) {
         arena.forEach(row => row.fill(0));
@@ -187,8 +187,8 @@ function collide(arena, player) {
     for (let y = 0; y < m.length; ++y) {
         for (let x = 0; x < m[0].length; ++x) {
             if (m[y][x] !== 0 &&
-               (arena[y + o.y] &&
-                arena[y + o.y][x + o.x]) !== 0) {
+                (arena[y + o.y] &&
+                    arena[y + o.y][x + o.x]) !== 0) {
                 return true;
             }
         }
@@ -204,11 +204,11 @@ function arenaSweep() {
                 continue outer;
             }
         }
-        
+
         const row = arena.splice(y, 1)[0].fill(0);
         arena.unshift(row);
         ++y;
-        
+
         player.score += rowCount * 10;
         rowCount *= 2;
     }
@@ -240,7 +240,7 @@ function updateScore() {
 const arena = createMatrix(12, 20);
 
 const player = {
-    pos: {x: 0, y: 0},
+    pos: { x: 0, y: 0 },
     matrix: null,
     score: 0,
 };
@@ -270,6 +270,23 @@ document.addEventListener('keydown', event => {
     } else if (event.keyCode === 38) { // Up (Rotate)
         playerRotate(1);
     }
+});
+
+// Mobile Controls
+document.getElementById('btn-left').addEventListener('click', () => {
+    if (!isGameOver) playerMove(-1);
+});
+
+document.getElementById('btn-right').addEventListener('click', () => {
+    if (!isGameOver) playerMove(1);
+});
+
+document.getElementById('btn-down').addEventListener('click', () => {
+    if (!isGameOver) playerDrop();
+});
+
+document.getElementById('btn-rotate').addEventListener('click', () => {
+    if (!isGameOver) playerRotate(1);
 });
 
 playerReset();
